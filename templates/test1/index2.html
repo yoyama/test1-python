@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>test1</title>
+
+<link rel="stylesheet"  href="//code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="//code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+</head>
+<body>
+{% load custom_tags %}
+
+<div data-role="page">
+
+<div data-role="header" id="header">
+<h1>テスト
+    <a href="/download/"  , data-ajax="false">ダウンロード</a>
+</h1>
+
+</div>
+
+
+<div data-role="content">
+<ul data-role="listview" data-inset="true" data-filter="true">
+   <li><input type="text"></li>
+   <li>{{pi}}</li>
+   <li> <a href="{{pi_enc}}" rel="external" , data-ajax="false">{{pi_enc|unenc}}</a>
+   <li> <a href="{{pi}}" rel="external" , data-ajax="false">{{pi}}</a>
+</ul>
+<form action="" method="post">
+<input type="text" name="name" id="basic" data-mini="true" />
+</form>
+</div>
+
+
+</body>
+</html>
