@@ -2,11 +2,14 @@
 # Create your views here.
 
 import sys,os
+from django.views.decorators.csrf import csrf_protect
+from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response ,get_object_or_404
 from django.template import RequestContext,Context, loader
 import urllib
 from django import utils
+import forms
 
 def index(request):
     print "index() called"
@@ -29,7 +32,41 @@ def download(request):
     response['Content-Transfer-Encoding'] = 'binary';
     return response
 
-    
+
+@csrf_protect
+def upload(request):
+    c = {}
+    c.update(csrf(request))
+    if request.method == 'POST':
+        form = forms.UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'], request.POST['name'])
+            return HttpResponseRedirect('/top/')
+        else:
+            folder = ""
+            if(request.GET.has_key('folder')):
+                folder = request.GET['folder']
+            c['form'] = form
+            c['folder'] = folder
+            return render_to_response('test1/upload.html', c)
+
+    else:
+        print c
+        form = forms.UploadFileForm()
+        folder = ""
+        if(request.GET.has_key('folder')):
+            folder = request.GET['folder']
+        print form
+        c['form'] = form
+        c['folder'] = folder
+        return render_to_response('test1/upload.html', c)
+
+
+def handle_uploaded_file(f, n):
+    with open('/tmp/'+ n, 'wb+') as fo:
+        for chunk in f.chunks():
+            fo.write(chunk)
+
 
 
 

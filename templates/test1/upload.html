@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>test1</title>
+
+<link rel="stylesheet"  href="//code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+$(document).bind("mobileinit", function(){
+    $.mobile.ajaxEnabled = false;
+    $.mobile.ajaxLinksEnabled = false;
+    $.mobile.ajaxFormsEnabled = false;
+});
+</script>
+<script src="//code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+</head>
+<body>
+{% load custom_tags %}
+
+<div data-role="page">
+
+<div data-role="header" id="header">
+<h1>アップロード
+</h1>
+
+</div>
+
+
+<div data-role="content">
+フォルダー:{{folder}}
+{{form.errors}}
+<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <input type="hidden" name="folder" id="upload_folder" value="{{folder}}" data-mini="true" />
+  <input type="text" name="name" id="upload_name" value="" data-mini="true" />
+  <input type="file" name="file" id="upload_file" data-mini="true" />
+  <input type="submit" name="submit" id="upload_subit" value="アップロード" data-mini="true" />
+</form>
+</div>
+
+
+</body>
+</html>

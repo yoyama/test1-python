@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'demo1.views.home', name='home'),
     # url(r'^demo1/', include('demo1.foo.urls')),
     url(r'^download/.*$', 'test1.views.download', name='download'),
+    url(r'^upload/.*$', 'test1.views.upload', name='upload'),
     url(r'^top/.*$', 'test1.views.index', name='index'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
