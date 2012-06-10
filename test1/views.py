@@ -63,7 +63,7 @@ def upload(request):
 
 
 def handle_uploaded_file(f, n):
-    with open('/tmp/'+ n, 'wb+') as fo:
+    with open('/tmp/'+ n.encode('utf8'), 'wb+') as fo:
         for chunk in f.chunks():
             fo.write(chunk)
 

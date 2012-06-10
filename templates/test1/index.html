@@ -22,11 +22,16 @@ $(document).bind("mobileinit", function(){
 
 <div data-role="page">
 
-<div data-role="header" id="header">
-<h1>テスト
-    <a href="/download/"  , data-ajax="false">ダウンロード</a>
-</h1>
-
+<div data-role="header" id="header" data-position="inline">
+    <h1>テスト</h1>
+    
+    
+  <div data-role="navbar">
+    <ul>
+      <li><a href="/download/"  data-icon="check"  data-ajax="false">Download</a></li>
+      <li><a href="/upload/?folder=あいうえお" data-icon="check"  data-ajax="false">Upload</a></li>
+  </ul>
+  </div><!-- /navbar -->
 </div>
 
 
